@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CarRentalService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_ICarRentalService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Storage" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CarRentalService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICarRentalService_GetCars_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCars" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetCars_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetCustomers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomers" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetCustomers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetBookings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookings" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetBookings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBookingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetActiveBookings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveBookings" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_GetActiveBookings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveBookingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CarRequest">
+    <wsdl:part name="parameters" element="tns:CarRequest" />
+  </wsdl:message>
+  <wsdl:message name="CarRequest_Headers">
+    <wsdl:part name="userId" element="tns:userId" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_AddCar_OutputMessage" />
+  <wsdl:message name="ICarRentalService_RemoveCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCar" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_RemoveCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCarResponse" />
+  </wsdl:message>
+  <wsdl:message name="CustomerRequest">
+    <wsdl:part name="parameters" element="tns:CustomerRequest" />
+  </wsdl:message>
+  <wsdl:message name="CustomerRequest_Headers">
+    <wsdl:part name="userId" element="tns:userId" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_AddCustomer_OutputMessage" />
+  <wsdl:message name="ChangeCustomerRequest">
+    <wsdl:part name="parameters" element="tns:ChangeCustomerRequest" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCustomerRequest_Headers">
+    <wsdl:part name="userId" element="tns:userId" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_ChangeCustomer_OutputMessage" />
+  <wsdl:message name="ICarRentalService_RemoveCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomer" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_RemoveCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="AvailableCarsRequest">
+    <wsdl:part name="parameters" element="tns:AvailableCarsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AvailableCarsRequest_Headers">
+    <wsdl:part name="userId" element="tns:userId" />
+  </wsdl:message>
+  <wsdl:message name="AvailableCarsResponse">
+    <wsdl:part name="parameters" element="tns:AvailableCarsResponse" />
+  </wsdl:message>
+  <wsdl:message name="BookingRequest">
+    <wsdl:part name="parameters" element="tns:BookingRequest" />
+  </wsdl:message>
+  <wsdl:message name="BookingRequest_Headers">
+    <wsdl:part name="userId" element="tns:userId" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_CreateBooking_OutputMessage" />
+  <wsdl:message name="ICarRentalService_RemoveBooking_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveBooking" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_RemoveBooking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_ReturnCar_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnCar" />
+  </wsdl:message>
+  <wsdl:message name="ICarRentalService_ReturnCar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReturnCarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICarRentalService">
+    <wsdl:operation name="GetCars">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/GetCars" message="tns:ICarRentalService_GetCars_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/GetCarsResponse" message="tns:ICarRentalService_GetCars_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/GetCustomers" message="tns:ICarRentalService_GetCustomers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/GetCustomersResponse" message="tns:ICarRentalService_GetCustomers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/GetBookings" message="tns:ICarRentalService_GetBookings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/GetBookingsResponse" message="tns:ICarRentalService_GetBookings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveBookings">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/GetActiveBookings" message="tns:ICarRentalService_GetActiveBookings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/GetActiveBookingsResponse" message="tns:ICarRentalService_GetActiveBookings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/AddCar" name="CarRequest" message="tns:CarRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/AddCarResponse" message="tns:ICarRentalService_AddCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/RemoveCar" message="tns:ICarRentalService_RemoveCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/RemoveCarResponse" message="tns:ICarRentalService_RemoveCar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/AddCustomer" name="CustomerRequest" message="tns:CustomerRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/AddCustomerResponse" message="tns:ICarRentalService_AddCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/ChangeCustomer" name="ChangeCustomerRequest" message="tns:ChangeCustomerRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/ChangeCustomerResponse" message="tns:ICarRentalService_ChangeCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/RemoveCustomer" message="tns:ICarRentalService_RemoveCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/RemoveCustomerResponse" message="tns:ICarRentalService_RemoveCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCars">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/GetAvailableCars" name="AvailableCarsRequest" message="tns:AvailableCarsRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/GetAvailableCarsResponse" name="AvailableCarsResponse" message="tns:AvailableCarsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/CreateBooking" name="BookingRequest" message="tns:BookingRequest" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/CreateBookingResponse" message="tns:ICarRentalService_CreateBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBooking">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/RemoveBooking" message="tns:ICarRentalService_RemoveBooking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/RemoveBookingResponse" message="tns:ICarRentalService_RemoveBooking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnCar">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICarRentalService/ReturnCar" message="tns:ICarRentalService_ReturnCar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICarRentalService/ReturnCarResponse" message="tns:ICarRentalService_ReturnCar_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICarRentalService" type="tns:ICarRentalService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCars">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/GetCars" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/GetCustomers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/GetBookings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveBookings">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/GetActiveBookings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCar">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/AddCar" style="document" />
+      <wsdl:input name="CarRequest">
+        <soap:header message="tns:CarRequest_Headers" part="userId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCar">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/RemoveCar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/AddCustomer" style="document" />
+      <wsdl:input name="CustomerRequest">
+        <soap:header message="tns:CustomerRequest_Headers" part="userId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/ChangeCustomer" style="document" />
+      <wsdl:input name="ChangeCustomerRequest">
+        <soap:header message="tns:ChangeCustomerRequest_Headers" part="userId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/RemoveCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCars">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/GetAvailableCars" style="document" />
+      <wsdl:input name="AvailableCarsRequest">
+        <soap:header message="tns:AvailableCarsRequest_Headers" part="userId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AvailableCarsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/CreateBooking" style="document" />
+      <wsdl:input name="BookingRequest">
+        <soap:header message="tns:BookingRequest_Headers" part="userId" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBooking">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/RemoveBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnCar">
+      <soap:operation soapAction="http://tempuri.org/ICarRentalService/ReturnCar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ICarRentalService" type="tns:ICarRentalService">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICarRentalService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetCars">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/GetCars" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomers">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/GetCustomers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBookings">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/GetBookings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveBookings">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/GetActiveBookings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCar">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/AddCar" style="document" />
+      <wsdl:input name="CarRequest">
+        <soap12:header message="tns:CarRequest_Headers" part="userId" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCar">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/RemoveCar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/AddCustomer" style="document" />
+      <wsdl:input name="CustomerRequest">
+        <soap12:header message="tns:CustomerRequest_Headers" part="userId" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/ChangeCustomer" style="document" />
+      <wsdl:input name="ChangeCustomerRequest">
+        <soap12:header message="tns:ChangeCustomerRequest_Headers" part="userId" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCustomer">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/RemoveCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCars">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/GetAvailableCars" style="document" />
+      <wsdl:input name="AvailableCarsRequest">
+        <soap12:header message="tns:AvailableCarsRequest_Headers" part="userId" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="AvailableCarsResponse">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/CreateBooking" style="document" />
+      <wsdl:input name="BookingRequest">
+        <soap12:header message="tns:BookingRequest_Headers" part="userId" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBooking">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/RemoveBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnCar">
+      <soap12:operation soapAction="http://tempuri.org/ICarRentalService/ReturnCar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CarRentalService">
+    <wsdl:port name="BasicHttpBinding_ICarRentalService" binding="tns:BasicHttpBinding_ICarRentalService">
+      <soap:address location="http://localhost:8080/soap" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ICarRentalService" binding="tns:NetTcpBinding_ICarRentalService">
+      <soap12:address location="net.tcp://localhost:8090/CarRentalService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8090/CarRentalService</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>PLOX-DESKTOP\Plox</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

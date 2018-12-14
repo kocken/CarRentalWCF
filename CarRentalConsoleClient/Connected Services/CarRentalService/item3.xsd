@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CarRentalService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CarRentalService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Storage" />
+  <xs:complexType name="CarInputs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="brand" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="model" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="registrationNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="year" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CarInputs" nillable="true" type="tns:CarInputs" />
+  <xs:complexType name="CustomerInputs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telephoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerInputs" nillable="true" type="tns:CustomerInputs" />
+  <xs:complexType name="ChangeCustomerInputs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="customerId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Storage" minOccurs="0" name="newDetails" nillable="true" type="q1:Customer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ChangeCustomerInputs" nillable="true" type="tns:ChangeCustomerInputs" />
+  <xs:complexType name="DateInputs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fromDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="toDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DateInputs" nillable="true" type="tns:DateInputs" />
+  <xs:complexType name="BookingInputs">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="carId" type="xs:int" />
+      <xs:element minOccurs="0" name="customerId" type="xs:int" />
+      <xs:element minOccurs="0" name="endTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="startTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BookingInputs" nillable="true" type="tns:BookingInputs" />
+</xs:schema>

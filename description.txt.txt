@@ -1,0 +1,8 @@
+Det här arbetet var skapad i form av en inlämningsuppgift i kursen "Utveckling med ramverket i .NET" på teknikhögskolan. Denna kurs har haft fokus på WCF och SOA. 
+Detta projekt implementerar enn WCF-tjänst som hostar ett biluthyrnings-system. WCF-tjänsten är "self-hosted" via "CarRentalHost"-bibloteket, som skapar och öppnar en instans av CarRentalService.
+Tjänsten kommunicerar med två class-libraries ("Logic" som i sin tur kommunicerar med "Storage") där "business logic" och data är sparad. 
+För att prova tjänsten och dess metoder så finns den dynamiska konsol-klienten "CarRentalConsoleClient" som man kan använda. Klienten pratar med WCF-tjänsten med BasicHttpBinding. 
+Utöver detta så hostas tjänsten även i TCP, men detta är inte implementerat i konsol-klienten. Man kan även inhämta all bil-data i JSON format med REST genom WebHttpBinding.
+Där errors kan hända, när man t.ex. försöker hyra en bil som inte finns så slänger tjänsten ut FaultExceptions med relevant information.
+
+Utvecklad av Mikael Karlgren
